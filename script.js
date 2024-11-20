@@ -10,21 +10,26 @@ const facts = [
   "There are more stars in the universe than grains of sand on Earth."
 ];
 
+// DOM Elements
 const factDisplay = document.getElementById('fact');
 const button = document.getElementById('new-fact-button');
-const factBox = document.querySelector('.fact-box');
+const factBox = document.getElementById('fact-box');
 
 // Function to display a random fact with animation
 button.addEventListener('click', () => {
+  // Button Animation
+  button.classList.add('loading');
+
   // Add animation to fact box
   factBox.classList.add('animate');
 
   // Generate a random fact
-  const randomIndex = Math.floor(Math.random() * facts.length);
-  factDisplay.textContent = facts[randomIndex];
-
-  // Remove animation after 0.5s
   setTimeout(() => {
+    const randomIndex = Math.floor(Math.random() * facts.length);
+    factDisplay.textContent = facts[randomIndex];
+
+    // Remove animations
     factBox.classList.remove('animate');
-  }, 500);
+    button.classList.remove('loading');
+  }, 500); // Simulates loading animation
 });
